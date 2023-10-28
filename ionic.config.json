@@ -1,0 +1,7 @@
+{
+  "name": "Rusteeze",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
