@@ -1,0 +1,48 @@
+ion-content {
+  --color: rgb(0, 0, 0);
+  --pading-top: 20px;
+}
+
+ion-item {
+  font-size: 14px;
+  --background: traslucent;
+  --color: rgb(255, 255, 255),   opacity: 90%;
+
+  ion-icon {
+    color: var(--ion-color-light);
+  }
+
+  &.active {
+    --background: rgb(28, 2, 104);
+
+    ion-icon {
+      color: var(--ion-color-light);
+    }
+  }
+}
+
+h4 {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+ion-menu {
+  --width: 254px;
+  --min-diwth: 254px;
+  outline: none;
+}
+
+.empty-icon{
+  font-size: 100px;
+}
+
+ion-avatar{
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+
+.avatar-icon {
+  font-size: 100px;
+}

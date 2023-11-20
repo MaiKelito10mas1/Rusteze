@@ -1,0 +1,78 @@
+<app-header [showMenu]="true" title="Inicio"></app-header>
+
+
+<ion-content>
+  <!--PRODUCTO ================================================== -->
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-list *ngIf="!loading">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="cardMod" *ngFor="let p of products">
+          <ion-card>
+            <ion-item>
+              <ion-avatar style="margin: auto;" size-lg="4" size-md="4" size-sm="4" size="12">
+                <img [src]="p.image" />
+              </ion-avatar>
+            </ion-item>
+            <ion-card-header>
+              <ion-card-title><div class="name"><strong>{{p.name}}</strong></div></ion-card-title>
+              <ion-card-subtitle>
+                <div class="data">
+              </div></ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              <strong>Precio: </strong> {{p.price | currency: 'CLP'}} <br>
+              <strong>Stock: </strong> {{p.stock}} <br>
+              <strong>Descripcion: </strong><br> {{p.description}}
+            </ion-card-content>
+            <br>
+            <!--BOTON DE EDITAR -->
+            <ion-button (click)="addUpdateProducto(p)" expand="block" shape="round" color="medium">
+              Actualizar Producto
+            </ion-button>
+            <br>
+            <ion-button (click)="confirmDeleteProduct(p)" expand="block" shape="round" color="danger">
+              Eliminar Producto
+            </ion-button>
+
+          </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-list>
+
+
+<!-- loading ===============================================-->
+<ion-list *ngIf="loading">
+    <ion-item class="product-item" *ngFor="let p of [1,1,1,1,1]">
+      <ion-avatar slot='start'>
+        <ion-skeleton-text animated style="width: 100%; height: 100%"></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <div><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></div>
+        <div><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></div>
+      </ion-label>
+    </ion-item>
+</ion-list>
+
+
+<!--============================== SIN PRODUCTOS DISPONIBLES-->
+<div *ngIf="!loading && !products.length" class="empty">
+  <ion-icon style="color: white;" name="alert-outline"></ion-icon>
+  <h3 style="color: white;">No hay productos disponibles</h3>
+</div>
+</ion-content>
+
+<!--============================== BOTON DE NUEVO PRODUCTO-->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addUpdateProducto()" color="light">
+    <ion-icon color="dark" name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
